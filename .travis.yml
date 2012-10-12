@@ -11,4 +11,5 @@ before_script:
     - git clone --depth=1 --quiet https://github.com/akretion/openerp-web.git ../openerp-web
     - psql -c 'create database openerp_test;' -U postgres
 
+
 script: cd ../openerp-server; ./openerp-server --db_user=postgres --stop-after-init --no-xmlrpc --no-xmlrpcs --no-netrpc -d openerp_test -i sale --addons-path=../openerp-addons,../openerp-web/addons
