@@ -7,7 +7,8 @@ python:
 
 before_script:
     - git clone --depth=1 --quiet git://github.com/rvalyi/openerp-server.git ../openerp-server
+    - pip install -r ../openerp-server/requirements.txt
 #    - ci/before_script.sh
     - psql -c 'create database openerp_test;' -U postgres
 
-script: cd ../openerp-server; ./openerp-server --db_user=postgres --stop-after-init --no-xmlrpc --no-xmlrpcs --no-netrpc -d openerp_test -i base
+script: cd ../openerp-server; ./openerp-server --db_user=postgres --stop-after-init --no-xmlrpc --no-xmlrpcs --no-netrpc -d openerp_test -i sale --addons-path=../openerp-addons
