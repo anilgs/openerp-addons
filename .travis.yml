@@ -15,5 +15,5 @@ before_script:
 script:
     - cd ../openerp-server
     - REPOSITORIES=../openerp-addons
-    - MODULES=`python -c "import os; print ','.join(list(set(os.listdir('${REPOSITORIES}')) - set(['document_ftp'])))"`
+    - MODULES=`python -c "import os; print ','.join(list(set(os.listdir('${REPOSITORIES}')) - set(['document_ftp', 'base_gengo'])))"`
     - ./openerp-server --db_user=postgres --stop-after-init --no-xmlrpc --no-xmlrpcs --no-netrpc -d openerp_test -i $MODULES --addons-path=$REPOSITORIES,../openerp-web/addons
