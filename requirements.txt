@@ -1,1 +1,2 @@
 gdata
+python-ldap
