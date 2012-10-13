@@ -12,4 +12,8 @@ before_script:
     - psql -c 'create database openerp_test;' -U postgres
 
 
-script: cd ../openerp-server; ./openerp-server --db_user=postgres --stop-after-init --no-xmlrpc --no-xmlrpcs --no-netrpc -d openerp_test -i sale --addons-path=../openerp-addons,../openerp-web/addons
+script:
+    - cd ../openerp-server
+    - REPOSITORIES=../openerp-addons
+    - MODULES=python -c "import os; print ','.join(list(set(os.listdir('${REPOSITORIES}')) - set(['document_ftp'])))"
+    - ./openerp-server --db_user=postgres --stop-after-init --no-xmlrpc --no-xmlrpcs --no-netrpc -d openerp_test -i $MODULES --addons-path=$REPOSITORIES,../openerp-web/addons
