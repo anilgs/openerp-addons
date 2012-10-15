@@ -12,5 +12,5 @@ before_script:
 script:
     - cd ../openerp-server
     - REPOSITORIES=../openerp-addons
-    - MODULES=python -c `"import os; print ','.join(e for e in(list(set(os.listdir('${REPOSITORIES}')) - set(['document_ftp', 'base_gengo', 'document_webdav']))) if not '10n_' in e)"`
+    - MODULES=`python -c "import os; print ','.join(e for e in(list(set(os.listdir('${REPOSITORIES}')) - set(['document_ftp', 'base_gengo', 'document_webdav']))) if not '10n_' in e)"`
     - ./openerp-server --db_user=postgres --stop-after-init --no-xmlrpc --no-xmlrpcs --no-netrpc -d openerp_test -i $MODULES --addons-path=$REPOSITORIES,../openerp-web/addons
